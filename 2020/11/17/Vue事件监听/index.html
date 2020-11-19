@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | CodeYu&#39;s Blog</title>
+  <title>Vue事件监听 | CodeYu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="CodeYu&#39;s Blog">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="在前端开发中经常需要交互，这个时候就必须监听用户的点击、拖拽、鼠标和键盘等操作(这些操作我们称之为事件)，在Vue中我们使用v-on指令来监听事件  v-on介绍 作用: 绑定事件监听器 缩写: @   设计一个计数器，点击+号按钮+1，点击-号按钮-1  HTML代码12345&lt;div id&#x3D;&quot;app&quot;&gt;    &lt;h2&gt;&amp;#123;&amp;#123;cou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue事件监听">
+<meta property="og:url" content="http://example.com/2020/11/17/Vue%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/index.html">
 <meta property="og:site_name" content="CodeYu&#39;s Blog">
+<meta property="og:description" content="在前端开发中经常需要交互，这个时候就必须监听用户的点击、拖拽、鼠标和键盘等操作(这些操作我们称之为事件)，在Vue中我们使用v-on指令来监听事件  v-on介绍 作用: 绑定事件监听器 缩写: @   设计一个计数器，点击+号按钮+1，点击-号按钮-1  HTML代码12345&lt;div id&#x3D;&quot;app&quot;&gt;    &lt;h2&gt;&amp;#123;&amp;#123;cou">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-17T14:02:16.000Z">
+<meta property="article:modified_time" content="2020-11-17T15:17:26.117Z">
 <meta property="article:author" content="SongQuanYu">
 <meta name="twitter:card" content="summary">
   
@@ -150,103 +154,185 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Vue事件监听" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Vue事件监听
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/17/Vue%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/" class="archive-article-date">
+
+        
+        <a href="/2020/11/17/Vue%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/" class="archive-article-date">
   	<time datetime="2020-11-17T14:02:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-17</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/17/Vue%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/">Vue事件监听</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在前端开发中经常需要交互，这个时候就必须监听用户的点击、拖拽、鼠标和键盘等操作(这些操作我们称之为事件)，<br>在Vue中我们使用v-on指令来监听事件</p>
+</blockquote>
+<h2 id="v-on介绍"><a href="#v-on介绍" class="headerlink" title="v-on介绍"></a>v-on介绍</h2><ul>
+<li><code>作用:</code> 绑定事件监听器</li>
+<li><code>缩写:</code> @</li>
+</ul>
+<blockquote>
+<p>设计一个计数器，点击+号按钮+1，点击-号按钮-1</p>
+</blockquote>
+<h3 id="HTML代码"><a href="#HTML代码" class="headerlink" title="HTML代码"></a>HTML代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;counter&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&#x27;add()&#x27;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&#x27;sub()&#x27;</span>&gt;</span>-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<h3 id="JavaScript代码"><a href="#JavaScript代码" class="headerlink" title="JavaScript代码"></a>JavaScript代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        counter: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="function"><span class="title">add</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.counter++;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="title">sub</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.counter--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+<h3 id="v-on使用‘-’缩写"><a href="#v-on使用‘-’缩写" class="headerlink" title="v-on使用‘@’缩写"></a>v-on使用‘@’缩写</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;counter&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&#x27;add()&#x27;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&#x27;sub()&#x27;</span>&gt;</span>-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="v-on的参数问题"><a href="#v-on的参数问题" class="headerlink" title="v-on的参数问题"></a>v-on的参数问题</h3><blockquote>
+<p>如果调用的事件不用传入参数，那么括号可以省略<br>当函数调用时需要传入参数，但是调用时没有加括号，这是Vue会传入一个浏览器自动生成的event对象到事件函数中<br>函数调用需要event对象和其他参数时，使用<code>$event</code>Vue会自动解析获取浏览器的event对象，并传给函数</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!-- 没有省略小括号 --&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&#x27;bin1Cli()&#x27;</span>&gt;</span>按钮1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!-- 省略小括号 --&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&#x27;bin1Cli&#x27;</span>&gt;</span>按钮2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!-- 当函数调用时需要传入参数，但是调用时没有加括号 --&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&#x27;bin2Cli(123)&#x27;</span>&gt;</span>按钮3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!-- 当函数调用时需要传入参数，但是调用时没有加括号，这是Vue会传入一个浏览器自动生成的event对象到事件函数中 --&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&#x27;bin2Cli&#x27;</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">     <span class="comment">&lt;!-- 函数调用需要event对象和其他参数 --&gt;</span></span><br><span class="line">     <span class="comment">&lt;!-- 在调用函数时，手动传入event对象 --&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&#x27;bin3Cli(124,$event)&#x27;</span>&gt;</span>按钮4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">    data: &#123;&#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="function"><span class="title">bin1Cli</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;bin1Cli&#x27;</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="title">bin2Cli</span>(<span class="params">abc</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;bin2Cli------&#x27;</span>+abc);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="title">bin3Cli</span>(<span class="params">abc, event</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;bin3Cli++++++&#x27;</span>+abc,event);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-on的修饰符"><a href="#v-on的修饰符" class="headerlink" title="v-on的修饰符"></a>v-on的修饰符</h3><blockquote>
+<p>停止冒泡<code>.stop</code><br>阻止默认事件<code>.prevent</code><br>监听某个按键 <code>.&#123;字母&#125;或.&#123;键对应的代码&#125;</code><br>只触发一次<code>.once</code></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">&#x27;divCli()&#x27;</span>&gt;</span></span><br><span class="line">        aaa</span><br><span class="line">        <span class="comment">&lt;!-- .stop修饰符的使用 阻止事件冒泡--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.stop</span>=<span class="string">&#x27;butCli()&#x27;</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- .prevent修饰符的使用 阻止默认事件--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 在提交时，需要使用自己的方式校验数据 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;baidu&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span> @<span class="attr">click.prevent</span>=<span class="string">&#x27;submitCli()&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 监听键盘某个按键 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> @<span class="attr">keyup.enter</span>=<span class="string">&#x27;keyUp()&#x27;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 只触发一次.once --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.once</span>=<span class="string">&#x27;Once()&#x27;</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">    data: &#123;&#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="function"><span class="title">butCli</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;butCli&#x27;</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="title">divCli</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;divCli&#x27;</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="title">submitCli</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;submitCli&#x27;</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="title">keyUp</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;keyUp&#x27;</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="title">Once</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;once&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/17/Vue%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/17/ES6%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A2%9E%E5%BC%BA%E5%86%99%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-11-17T13:29:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/17/ES6%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A2%9E%E5%BC%BA%E5%86%99%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6对象字面量的增强写法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/17/ES6%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E5%A2%9E%E5%BC%BA%E5%86%99%E6%B3%95/">ES6对象字面量的增强写法</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/17/hello-world/" class="archive-article-date">
-  	<time datetime="2020-11-17T04:41:04.071Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/17/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -269,8 +355,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
